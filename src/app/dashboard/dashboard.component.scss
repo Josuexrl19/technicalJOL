@@ -1,0 +1,226 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.displayBoxing {
+  flex: 0 0 50%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-right: 1px solid #69be28;
+  margin-right: 1%;
+  color: #00693c;
+}
+
+.h2Titles {
+  border-bottom: 1px solid #69be28;
+  color: #00693c;
+}
+
+.logoPromerica {
+  margin-left: 50px;
+  cursor: pointer;
+}
+.logoOrigami {
+  margin-top: -2%;
+  cursor: pointer;
+}
+
+.floatLabel {
+  font-size: 1rem;
+  position: absolute;
+  margin-top: 3%;
+}
+
+.raddioButtonVehicle {
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-content: space-between;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+  margin-top: 15%;
+}
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.currencyFormat {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-content: space-between;
+}
+
+.buttonLess {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 1%;
+  min-width: auto;
+  color: #69be28;
+}
+
+.buttonMore {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 1%;
+  min-width: auto;
+  color: #69be28;
+}
+
+.displayPosition5 {
+  display: flex;
+  font-size: 110%;
+  justify-content: flex-end;
+  margin-right: 20%;
+}
+
+::ng-deep .mat-step-header {
+  flex-flow: column;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container {
+  align-self: center;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  margin-top: 60px;
+}
+
+::ng-deep .mat-grid-tile-content {
+  top: 0;
+  left: 10px;
+
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.rowClassComponent {
+  margin-top: 50px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+}
+
+.rowTableComponent {
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-table {
+  background: #fff0;
+}
+
+td.mat-cell {
+  border-bottom-style: none;
+}
+
+th.mat-header-cell {
+  border-bottom-style: none;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+.material-icons {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  position: absolute;
+  font-size: 14px;
+  color: #69be28;
+}
+
+.material-icons stepper {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  position: absolute;
+  font-size: 14px;
+  color: #000000 !important;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  border-top-style: none !important;
+  margin: unset !important;
+}
+
+::ng-deep .mat-tab-label {
+  color: #69be28;
+  font-size: 139%;
+}
+
+::ng-deep
+  .mat-radio-button.mat-accent.mat-radio-checked
+  .mat-radio-outer-circle {
+  border-color: #69be28 !important;
+}
+
+::ng-dep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #00693c !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #00693c !important;
+}
+
+::ng-deep .mat-checkbox-background {
+  background-color: #00693c !important;
+}
+::ng-deep .mat-tab-header {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  border: none;
+  width: 100%;
+}
+
+::ng-deep .mat-horizontal-stepper-header .mat-step-icon {
+  background-color: #69be28;
+  font-size: 160%;
+  height: 38px;
+  width: 40px;
+  margin-top: 10%;
+}
+
+.buttonNext {
+  color: white;
+  background-color: #00693c;
+}

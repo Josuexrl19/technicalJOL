@@ -1,0 +1,884 @@
+<div
+  style="
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: nowrap;
+  "
+>
+  <div class="logoPromerica">
+    <img src="../../assets/images/logoPromerica.png" />
+  </div>
+  <div class="logoOrigami">
+    <img src="../../assets/images/origami.png" />
+  </div>
+</div>
+
+<div class="grid-container">
+  <mat-stepper
+    style="flex-flow: column; align-self: center"
+    class="example-stepper"
+  >
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Cotizador</ng-template>
+      <div style="display: flex; margin-top: 10px">
+        <div class="displayBoxing">
+          <h2 class="h2Titles">
+            Datos para cotizar su
+            <span class="font-weight-bold">vehículo nuevo </span>
+          </h2>
+
+          <div>
+            <h6 class="floatLabel">Moneda:</h6>
+
+            <mat-tab-group mat-align-tabs="end">
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <div class="mat-tab-label-content">$</div>
+                </ng-template>
+                <div>
+                  <!-- CATEGORIE TAB -->
+                  <div class="rowClassComponent">
+                    <div>
+                      <h6 style="font-size: 1rem; margin-top: 3%">
+                        Categoría:
+                      </h6>
+                    </div>
+
+                    <div class="raddioButtonVehicle">
+                      <div>
+                        <mat-radio-group>
+                          <mat-radio-button [checked]="true" value="1"
+                            >Particular</mat-radio-button
+                          >
+                        </mat-radio-group>
+                      </div>
+
+                      <div>
+                        <mat-radio-group>
+                          <mat-radio-button
+                            [disabled]="true"
+                            value="Carga Liviana"
+                            >Carga Liviana</mat-radio-button
+                          >
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VEHICLE TAB -->
+                  <div class="rowClassComponent">
+                    <div style="display: contents">
+                      <h6 style="font-size: 1rem; margin-top: 3%">
+                        Valor del Vehículo:
+                      </h6>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end">
+                      <div style="text-align-last: end">
+                        <button
+                          class="buttonLess"
+                          (click)="addLessCurrency(true)"
+                          mat-stroked-button
+                        >
+                          -
+                        </button>
+
+                        <mat-form-field style="width: 35%; color: black">
+                          <input
+                            [(ngModel)]="sliderTotalVehicle"
+                            matInput
+                            (blur)="changeInputVehicle()"
+                            currencyMask
+                            [options]="{ prefix: '', align: 'center' }"
+                            value=""
+                          />
+                        </mat-form-field>
+
+                        <button
+                          class="buttonMore"
+                          (click)="addMoreCurrency(true)"
+                          mat-stroked-button
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-around;
+                      flex-direction: row;
+                    "
+                  >
+                    <div style="width: 90%">
+                      <input
+                        #range
+                        [(ngModel)]="sliderTotalVehicle"
+                        style="width: 90%"
+                        min="12000"
+                        max="100000"
+                        type="range"
+                        list="tickmarks"
+                        step="2000"
+                        (input)="modifiedValueVehicle(range.value)"
+                      />
+
+                      <datalist id="tickmarks">
+                        <option value="12000" label="12.000"></option>
+                        <option value="32000" label="32.000"></option>
+                        <option value="44000" label="44.000"></option>
+                        <option value="56000" label="56.000"></option>
+                        <option value="100000" label="100.000"></option>
+                      </datalist>
+                    </div>
+                  </div>
+
+                  <!-- YEAR TAB -->
+                  <div class="rowClassComponent">
+                    <div style="display: contents">
+                      <h6 style="font-size: 1rem; margin-top: 3%">Año:</h6>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end">
+                      <div style="text-align-last: end">
+                        <button
+                          class="buttonLess"
+                          (click)="addLessDataSlider(true)"
+                          mat-stroked-button
+                        >
+                          -
+                        </button>
+
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="sliderYear"
+                            matInput
+                            (blur)="changeInputYear()"
+                            style="text-align-last: center"
+                          />
+                        </mat-form-field>
+
+                        <button
+                          class="buttonMore"
+                          (click)="addMoreDataSlider(true)"
+                          mat-stroked-button
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-around;
+                      flex-direction: row;
+                    "
+                  >
+                    <div style="width: 90%">
+                      <input
+                        #rangeYear
+                        [(ngModel)]="sliderYear"
+                        style="width: 90%"
+                        [min]="listYears[0]"
+                        [max]="listYears[listYears.length - 1]"
+                        type="range"
+                        list="tickmarksYear"
+                        step="1"
+                        (input)="modifiedValueYear(rangeYear.value)"
+                      />
+
+                      <datalist
+                        *ngFor="let year of listYears"
+                        id="tickmarksYear"
+                      >
+                        <option value="'year'" label="'year'"></option>
+                      </datalist>
+                    </div>
+                  </div>
+
+                  <!-- PRIMA TAB -->
+
+                  <div class="rowClassComponent">
+                    <div style="display: contents">
+                      <h6 style="font-size: 1rem; margin-top: 3%">Prima:</h6>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end">
+                      <div style="text-align-last: end">
+                        <button
+                          class="buttonLess"
+                          (click)="addLessCurrency(false)"
+                          mat-stroked-button
+                        >
+                          -
+                        </button>
+
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="sliderLoan"
+                            matInput
+                            (blur)="changeInputLoan()"
+                            currencyMask
+                            [options]="{ prefix: '', align: 'center' }"
+                          />
+                        </mat-form-field>
+
+                        <button
+                          class="buttonMore"
+                          (click)="addMoreCurrency(false)"
+                          mat-stroked-button
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-around;
+                      flex-direction: row;
+                    "
+                  >
+                    <div style="width: 90%">
+                      <input
+                        #rangeLoan
+                        [(ngModel)]="sliderLoan"
+                        style="width: 90%"
+                        min="2400"
+                        max="80000"
+                        type="range"
+                        list="tickmarksLoan"
+                        step="200"
+                        (input)="modifiedValueLoan(rangeLoan.value)"
+                      />
+
+                      <datalist id="tickmarksLoan">
+                        <option value="2400" label="2400"></option>
+                        <option value="20000" label="20000"></option>
+                        <option value="40000" label="40000"></option>
+                        <option value="60000" label="60000"></option>
+                        <option value="80000" label="80000"></option>
+                      </datalist>
+                    </div>
+                  </div>
+
+                  <!-- PLAZO TAB -->
+                  <div class="rowClassComponent">
+                    <div style="display: contents">
+                      <h6 style="font-size: 1rem; margin-top: 3%">
+                        Plazo (meses):
+                      </h6>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end">
+                      <div style="text-align-last: end">
+                        <button
+                          class="buttonLess"
+                          (click)="addLessDataSlider(false)"
+                          mat-stroked-button
+                        >
+                          -
+                        </button>
+
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            (blur)="changeInputTerm($event)"
+                            [(ngModel)]="paymentTerm"
+                            matInput
+                            style="text-align-last: center"
+                          />
+                        </mat-form-field>
+
+                        <button
+                          class="buttonMore"
+                          (click)="addMoreDataSlider(false)"
+                          mat-stroked-button
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-around;
+                      flex-direction: row;
+                    "
+                  >
+                    <div style="width: 90%">
+                      <input
+                        #rangeTerm
+                        [(ngModel)]="paymentTerm"
+                        style="width: 90%"
+                        min="48"
+                        max="84"
+                        type="range"
+                        list="tickmarksTerm"
+                        step="1"
+                        (input)="modifiedValueTerm(rangeTerm.value)"
+                      />
+
+                      <datalist id="tickmarksTerm">
+                        <option value="48" label="48"></option>
+                        <option value="60" label="60"></option>
+                        <option value="72" label="72"></option>
+                        <option value="84" label="84"></option>
+                      </datalist>
+                    </div>
+                  </div>
+                </div>
+              </mat-tab>
+
+              <!-- TAB DISABLED -->
+              <mat-tab [disabled]="true">
+                <ng-template mat-tab-label>
+                  <div class="mat-tab-label-content">₡</div>
+                </ng-template>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+        <div class="displayBoxing">
+          <h2 class="h2Titles">Resumen del financiamiento</h2>
+
+          <div>
+            <div class="rowTableComponent">
+              <div style="width: 100%">
+                <table style="width: 100%" mat-table [dataSource]="dataSource">
+                  <ng-container matColumnDef="position">
+                    <th
+                      style="font-size: 1rem"
+                      mat-header-cell
+                      *matHeaderCellDef
+                    >
+                      Deuda total
+                    </th>
+                    <td style="width: 67%" mat-cell *matCellDef="let element">
+                      {{ element.position }}
+
+                      <span
+                        *ngIf="element.position === '+Monto a financiar'"
+                        matTooltipPosition="above"
+                        matTooltip="Valor del vehiculo menos prima"
+                      >
+                        <i class="material-icons">error</i>
+                      </span>
+                    </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name | currency }}
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+              </div>
+            </div>
+            <div class="rowTableComponent">
+              <div style="width: 100%">
+                <table style="width: 100%" mat-table [dataSource]="dataSource2">
+                  <ng-container matColumnDef="position">
+                    <th
+                      style="font-size: 1rem"
+                      mat-header-cell
+                      *matHeaderCellDef
+                    >
+                      Cuota mensual total:
+                    </th>
+                    <td style="width: 67%" mat-cell *matCellDef="let element">
+                      {{ element.position }}
+                    </td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name | currency }}
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="rowTableComponent">
+              <div style="width: 100%">
+                <table style="width: 100%" mat-table [dataSource]="dataSource3">
+                  <ng-container matColumnDef="position">
+                    <th
+                      style="font-size: 1rem"
+                      mat-header-cell
+                      *matHeaderCellDef
+                    >
+                      Seguros opcionales:
+                    </th>
+                    <td style="width: 67%" mat-cell *matCellDef="let element">
+                      <mat-radio-group *ngIf="element.id === 1">
+                        <mat-radio-button
+                          #radioChildSix
+                          value="1"
+                          [checked]="radioButtonSix"
+                          (click)="changeRadioButtonSix()"
+                          >Seguro de desempleo con cobertura a 6
+                          meses</mat-radio-button
+                        >
+                      </mat-radio-group>
+
+                      <mat-radio-group *ngIf="element.id === 2">
+                        <mat-radio-button
+                          #radioChildTwelve
+                          value="1"
+                          [checked]="radioButtonTwelve"
+                          (click)="changeRadioButtonTwelve()"
+                          >Seguro de desempleo con cobertura a 12 meses
+                        </mat-radio-button>
+                      </mat-radio-group>
+
+                      <mat-checkbox
+                        [(ngModel)]="checkboxSecureBool"
+                        (change)="addDataCheckboxTotal()"
+                        *ngIf="element.id === 3"
+                      >
+                        Seguro de vida
+                      </mat-checkbox>
+                      <div
+                        *ngIf="element.id === 4"
+                        style="
+                          display: flex;
+                          font-size: 110%;
+                          justify-content: space-evenly;
+                        "
+                      >
+                        <button
+                          [disabled]="true"
+                          mat-raised-button
+                          color="primary"
+                          style="color: white; font: small-caption"
+                        >
+                          Ver detalle de cuotas
+                        </button>
+                        {{ element.position }}
+                      </div>
+
+                      <div *ngIf="element.id === 5" class="displayPosition5">
+                        {{ element.position }}
+
+                        <span
+                          matTooltipPosition="above"
+                          matTooltip="Valor del vehiculo menos prima"
+                        >
+                          <i class="material-icons">error</i>
+                        </span>
+                      </div>
+
+                      <div *ngIf="element.id === 6" style="text-align: center">
+                        <span style="font-size: 12px"
+                          >* Los valores de esta cotización son únicamente de
+                          referencia y pueden variar según las condiciones de
+                          mercado.</span
+                        >
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.name | currency }}
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                  ></tr>
+                </table>
+              </div>
+            </div>
+
+            <div
+              style="
+                justify-content: space-evenly;
+                display: flex;
+                margin-right: 6%;
+              "
+            >
+              <button
+                style="font: small-caption; color: white"
+                mat-raised-button
+                [disabled]="true"
+                color="primary"
+              >
+                <div
+                  style="
+                    display: flex;
+
+                    flex-direction: column-reverse;
+                  "
+                >
+                  <span> Enviar Cotización</span>
+                  <span> Descargar /</span>
+                </div>
+              </button>
+
+              <button class="buttonNext" mat-button matStepperNext>
+                Iniciar Preaprobación
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <ng-template matStepLabel>Información</ng-template>
+      <div style="display: flex; margin-top: 10px">
+        <div class="displayBoxing">
+          <h2 class="h2Titles">Información personal</h2>
+
+          <div>
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">
+                  Tipo de Identificación:
+                </h6>
+              </div>
+
+              <div class="raddioButtonVehicle">
+                <div>
+                  <mat-radio-group>
+                    <mat-radio-button checked="true" value="Particular"
+                      >Nacional</mat-radio-button
+                    >
+                  </mat-radio-group>
+                </div>
+
+                <div>
+                  <mat-radio-group>
+                    <mat-radio-button value="Carga Liviana"
+                      >Dimex</mat-radio-button
+                    >
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">Cédula:</h6>
+              </div>
+
+              <div class="currencyFormat">
+                <mat-form-field
+                  style="width: 35%; color: black"
+                  class="example-full-width"
+                >
+                  <input
+                    number
+                    placeholder="9-9999-99999"
+                    [(ngModel)]="personId"
+                    style="text-align-last: center"
+                    matInput
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">
+                  Nombre Completo::
+                </h6>
+              </div>
+
+              <div class="currencyFormat">
+                <mat-form-field
+                  style="width: 35%; color: black"
+                  class="example-full-width"
+                >
+                  <input
+                    placeholder="Nombre Completo"
+                    [(ngModel)]="nameCompleted"
+                    style="text-align-last: center"
+                    matInput
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">Celular:</h6>
+              </div>
+
+              <div class="currencyFormat">
+                <mat-form-field
+                  style="width: 35%; color: black"
+                  class="example-full-width"
+                >
+                  <input
+                    placeholder="9999-9999"
+                    number
+                    [(ngModel)]="personCelular"
+                    style="text-align-last: center"
+                    matInput
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">
+                  Correo Electronico:
+                </h6>
+              </div>
+
+              <div class="currencyFormat">
+                <mat-form-field
+                  style="width: 35%; color: black"
+                  class="example-full-width"
+                >
+                  <input
+                    email
+                    placeholder="correo@correo.com"
+                    [(ngModel)]="personEmail"
+                    matInput
+                    style="text-align-last: center"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="displayBoxing">
+          <h2 class="h2Titles">Información laboral</h2>
+
+          <div>
+            <div class="rowClassComponent">
+              <div>
+                <h6 style="font-size: 1rem; margin-top: 3%">Categoría:</h6>
+              </div>
+
+              <div style="margin-right: 10%">
+                <mat-radio-group style="display: flex; margin-right: 80%">
+                  <mat-radio-button checked="true" value="1"
+                    >Asalariado</mat-radio-button
+                  >
+
+                  <mat-radio-button value="2">Independiente</mat-radio-button>
+                  <mat-radio-button value="3">Mixto</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+
+            <div>
+              <h6 class="floatLabel">Moneda:</h6>
+
+              <mat-tab-group mat-align-tabs="end">
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <div class="mat-tab-label-content">$</div>
+                  </ng-template>
+                  <div>
+                    <div class="rowClassComponent">
+                      <div style="display: flex">
+                        <h6 style="font-size: 1rem; margin-top: 3%">
+                          Ingreso Bruto:
+                        </h6>
+                        <span
+                          matTooltipPosition="above"
+                          matTooltip="Ingresos totales antes de cualquier tipo de deducción"
+                        >
+                          <i class="material-icons">error</i>
+                        </span>
+                      </div>
+
+                      <div class="currencyFormat">
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="grossIncome"
+                            matInput
+                            currencyMask
+                            [options]="{ prefix: '$', align: 'center' }"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="rowClassComponent">
+                      <div style="display: flex">
+                        <h6 style="font-size: 1rem; margin-top: 3%">
+                          Ingreso Neto:
+                        </h6>
+                        <span
+                          matTooltipPosition="above"
+                          matTooltip="Ingresos totales despues de cualquier tipo de deducción"
+                        >
+                          <i class="material-icons">error</i>
+                        </span>
+                      </div>
+
+                      <div class="currencyFormat">
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="netIncome"
+                            matInput
+                            currencyMask
+                            [options]="{ prefix: '$', align: 'center' }"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <div class="mat-tab-label-content">₡</div>
+                  </ng-template>
+
+                  <div>
+                    <div class="rowClassComponent">
+                      <div style="display: contents">
+                        <h6 style="font-size: 1rem; margin-top: 3%">
+                          Ingreso Bruto:
+                        </h6>
+                        <span
+                          matTooltipPosition="above"
+                          matTooltip="Ingresos totales despues de cualquier tipo de deducción"
+                        >
+                          <i class="material-icons">error</i>
+                        </span>
+                      </div>
+
+                      <div class="currencyFormat">
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="grossIncome"
+                            matInput
+                            currencyMask
+                            [options]="{ prefix: '₡', align: 'center' }"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="rowClassComponent">
+                      <div style="display: contents">
+                        <h6 style="font-size: 1rem; margin-top: 3%">
+                          Ingreso Neto:
+                        </h6>
+                      </div>
+
+                      <div class="currencyFormat">
+                        <mat-form-field
+                          style="width: 35%; color: black"
+                          class="example-full-width"
+                        >
+                          <input
+                            [(ngModel)]="netIncome"
+                            matInput
+                            currencyMask
+                            [options]="{ prefix: '₡', align: 'center' }"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+
+              <div class="rowClassComponent">
+                <div style="display: flex">
+                  <h6 style="font-size: 1rem; margin-top: 3%">
+                    Antigüedad Laboral:
+                  </h6>
+                  <span
+                    matTooltipPosition="above"
+                    matTooltip="Cantidad de tiempo trabajando para un mismo patrono"
+                  >
+                    <i class="material-icons">error</i>
+                  </span>
+                </div>
+
+                <div class="currencyFormat">
+                  <div class="example-button-row">
+                    <button mat-raised-button style="background: #63ceca">
+                      0 - 6 meses
+                    </button>
+                    <button mat-raised-button style="background: #63ceca">
+                      6 - 12 meses
+                    </button>
+                    <button mat-raised-button style="background: #63ceca">
+                      +1 ano
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="display: flex; justify-content: space-between; margin-top: 10%"
+      >
+        <div>
+          <button mat-button matStepperPrevious>Atrás</button>
+        </div>
+
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Documentos</ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Preaprobación</ng-template>
+    </mat-step>
+  </mat-stepper>
+</div>
